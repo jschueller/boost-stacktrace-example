@@ -2,7 +2,7 @@
 
 cmake_minimum_required (VERSION 3.1)
 
-set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the build type")
+set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Choose the build type")
 
 if(POLICY CMP0025)
   cmake_policy(SET CMP0025 NEW)
@@ -19,7 +19,8 @@ add_executable (stacktrace main.cxx)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   target_compile_definitions(stacktrace PRIVATE _GLIBCXX_ASSERTIONS)
-  set(CMAKE_CXX_FLAGS "-no-pie -fno-inline ${CMAKE_CXX_FLAGS}")
+  target_compile_options(stacktrace PRIVATE "-g;-fno-inline")
+  target_link_options(stacktrace PRIVATE "-no-pie")
 endif ()
 
 if (UNIX)
