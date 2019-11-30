@@ -19,7 +19,7 @@ add_executable (stacktrace main.cxx)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   target_compile_definitions(stacktrace PRIVATE _GLIBCXX_ASSERTIONS)
-  set(CMAKE_CXX_FLAGS "-no-pie ${CMAKE_CXX_FLAGS}")
+  set(CMAKE_CXX_FLAGS "-no-pie -fno-inline ${CMAKE_CXX_FLAGS}")
 endif ()
 
 if (UNIX)
